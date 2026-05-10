@@ -1,0 +1,259 @@
+/* ===== FONTS & ICONS ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css');
+
+/* ===== GLOBAL ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* ===== LOGIN PAGE ===== */
+body.login {
+    background: linear-gradient(135deg, #f0efff, #333, #555);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+form.login-form {
+    background: rgba(31, 40, 51, 0.9);
+    padding: 30px 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #45a29e, 0 0 40px #66fcf1;
+    width: 90%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form.login-form h2 {
+    text-align: center;
+    color: #66fcf1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #45a29e;
+}
+
+form.login-form input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #45a29e;
+    font-size: 1em;
+    background: #0b0c10;
+    color: #66fcf1;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+form.login-form input:focus {
+    outline: none;
+    box-shadow: 0 0 12px #66fcf1;
+    border-color: #66fcf1;
+}
+
+form.login-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #00ffef;
+    color: #0b0c10;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    box-shadow: 0 0 10px #45a29e;
+}
+
+form.login-form button:hover {
+    background: #66fcf1;
+    color: #0b0c10;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px #66fcf1;
+}
+
+.error {
+    text-align: center;
+    color: #ff5555;
+    font-weight: 600;
+    text-shadow: 0 0 3px #ff0000;
+}
+
+/* ===== DASHBOARD PAGE ===== */
+body.dashboard {
+    background: #3d4242;
+    padding: 0;
+}
+
+header {
+    background: #00acc1;
+    padding: 10px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    color: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.panel {
+    background: #333;
+    padding: 25px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+input, button {
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.05em;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+input {
+    background: #e0f2f1;
+    color: #004d40;
+    box-shadow: 0 0 5px #80cbc4;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 15px #26a69a;
+}
+
+button {
+    background: #26a69a;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00acc1;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px #00acc1;
+}
+
+.card {
+    background: #555;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+    flex-wrap: wrap;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card .info {
+    font-weight: 700;
+}
+
+.card .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.card .actions a {
+    text-decoration: none;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+/* BUTTON COLORS */
+a.connect {background:#00acc1;} 
+a.connect:hover {background:#0097a7;}
+a.edit {background:#26a69a;} 
+a.edit:hover {background:#009688;}
+a.delete {background:#ef5350;} 
+a.delete:hover {background:#e53935;}
+a.cancel {background:#ef5350;} 
+a.cancel:hover {background:#e53935;}
+a.tambah {padding:10px;color:#fff;border-radius:8px;text-decoration:none;} 
+a.tambah:hover {background:#0097a7;}
+a.batal {padding:12px;color:#fff;border-radius:12px;text-decoration:none;} 
+a.batal:hover {background:#0097a7;}
+
+.msg {
+    color: #388e3c;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+/* Panel Admin Settings toggle */
+.panel-admin-toggle {
+    max-width: 360px;
+    margin: auto;
+    padding: 20px;
+    background:#333;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    color:#fff;
+    transition: 0.3s;
+}
+
+.panel-admin-toggle.hidden {
+    display: none !important;
+}
+
+/* Tombol toggle */
+#toggle-admin {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #26a69a;
+    color: white;
+    cursor: pointer;
+}
+#toggle-admin:hover {
+    background: #00acc1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:600px){
+    main {padding:15px;}
+    .panel {padding:20px;}
+    .card {flex-direction:column;align-items:flex-start;gap:10px;}
+    .card .actions {width:100%;justify-content:flex-start;}
+    input, button {font-size:1em;padding:12px;}
+}
