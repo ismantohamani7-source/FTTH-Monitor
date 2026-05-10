@@ -2,6 +2,12 @@
 (function(){
   const AUTO_AJAX_UPDATE = 5000; // 5 detik
   
+  // ✅ TAMBAHAN: Global variable untuk tracking filter state
+  window.currentFilterState = {
+    status: localStorage.getItem('apTableFilterState') || 'all',
+    lastApplied: new Date().getTime()
+  };
+  
   // Helper: format waktu "since" ke format "MMM/DD/YYYY HH:mm:ss"
   function formatSinceJS(s) {
     if (!s) return '';
@@ -48,6 +54,56 @@
       hash = hash & hash;
     }
     return Math.abs(hash).toString(16);
+  }
+  
+  // ✅ TAMBAHAN: Restore dan apply filter setelah table update
+  function reApplyCurrentFilter() {
+    const filterStatus = window.currentFilterState.status || 'all';
+    const table = document.getElementById('ap-table');
+    if (!table) return;
+    
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    rows.forEach(row => {
+      const isParent = row.classList.contains('parent-row');
+      const groupId = row.dataset.group;
+      
+      if (isParent) {
+        const childRows = Array.from(document.querySelectorAll('.' + groupId));
+        if (filterStatus === 'all') {
+          row.style.display = '';
+          childRows.forEach((cr) => { cr.style.display = 'none'; });
+          const icon = row.querySelector('.toggle-icon');
+          if (icon) icon.textContent = '⯈';
+        } else {
+          const anyChildMatch = childRows.some(cr => cr.dataset.status === filterStatus);
+          if (anyChildMatch) {
+            row.style.display = '';
+            childRows.forEach(cr => {
+              if (cr.dataset.status === filterStatus) cr.style.display = 'table-row';
+              else cr.style.display = 'none';
+            });
+            const icon = row.querySelector('.toggle-icon');
+            if (icon) icon.textContent = '⯆';
+          } else {
+            row.style.display = 'none';
+            childRows.forEach(cr => { cr.style.display = 'none'; });
+          }
+        }
+      } else {
+        const s = row.dataset.status || 'unknown';
+        if (filterStatus === 'all') row.style.display = '';
+        else row.style.display = (s === filterStatus) ? '' : 'none';
+      }
+    });
+    
+    // ✅ Restore button active state
+    const btnOffline = document.getElementById('filter-offline');
+    const btnOnline = document.getElementById('filter-online');
+    const btnAll = document.getElementById('filter-all');
+    
+    if (btnOffline) btnOffline.classList.toggle('active', filterStatus === 'down');
+    if (btnOnline) btnOnline.classList.toggle('active', filterStatus === 'up');
+    if (btnAll) btnAll.classList.toggle('active', filterStatus === 'all');
   }
   
   // Main function untuk update
@@ -120,6 +176,9 @@
         
         // Update tabel
         updateTableUI(data);
+        
+        // ✅ TAMBAHAN: Re-apply filter setelah table rebuild
+        reApplyCurrentFilter();
       })
       .catch(err => {
         console.warn('AJAX update error:', err);
